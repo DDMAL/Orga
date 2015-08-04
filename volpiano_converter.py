@@ -1,5 +1,5 @@
 sequence = raw_input("Enter Volpiano pitch sequence:\n")
-print sequence
+
 volpiano_map =  {'h':'a', 'j':'b', 'k':'c',
                  'l':'d', 'm':'e', 'n':'f',
                  'o':'g', 'p':'a', 'q':'b',
