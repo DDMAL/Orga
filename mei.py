@@ -1,9 +1,8 @@
 import xml.etree.ElementTree as ET
 import os
 
-def get_all_notes():
+def get_all_notes(file_path):
     script_dir = os.path.dirname(__file__)
-    file_path = raw_input('Please enter path to xml/mei file:\n')
     abs_file_path = os.path.join(script_dir, file_path)
 
     tree = ET.parse(abs_file_path)
