@@ -2,16 +2,15 @@ import csv
 import os
 
 # Queries csv file for volpiano pitches for a single side of Folio
-def query():
+def query(file_path, Folio):
     script_dir = os.path.dirname(__file__)
-    file_path = raw_input('Enter path to csv file to be queried:\n')
     abs_file_path = os.path.join(script_dir, file_path)
 
     notes = ""
 
     with open(abs_file_path) as csvfile:
         reader = csv.DictReader(csvfile)
-        page = raw_input('Enter desired Folio number:\n')
+        page = Folio
 
         previous = None
         is_folio_found = False
@@ -36,8 +35,7 @@ def query():
         return notes
 
 # Converts volpiano symbols to diatonic notes
-def convert():
-    sequence = raw_input("Enter Volpiano note sequence:\n")
+def convert(sequence):
 
     volpiano_map =  {'h':'a', 'j':'b', 'k':'c',
                     'l':'d', 'm':'e', 'n':'f',
@@ -54,9 +52,8 @@ def convert():
     return new_sequence
 
 # Removes desired symbols from input sequence
-def remove():
-    sequence = raw_input("Enter sequence:\n")
-    to_remove = raw_input("Enter symbols to remove:\n").split()
+def remove(sequence, symbols):
+    to_remove = symbols 
 
     new_sequence = ""
     for s in sequence:
