@@ -17,9 +17,11 @@ mei_notes = mei.get_all_notes("../data/" + mei_file)
 dt = datetime.now()
 dt = dt.replace(second=0, microsecond=0)
 
-with open("test.txt", "w") as fo:
+with open("../tests/trial.txt", "w") as fo:
     fo.write(str(dt) + "\n")
-    fo.write("\n" + "mei_notes from " + mei_file + "\n")
+    fo.write("\n" + "mei_notes in " + mei_file + "\n")
+    fo.write(note.count(mei_notes) + "\n")
     fo.write("\n" + mei_notes + "\n")
     fo.write("\n" + "volpiano_notes from " + csvfile + " in Folio: " + Folio + "\n")
+    fo.write(note.count(extracted_notes) + "\n")
     fo.write("\n" + extracted_notes + "\n")
