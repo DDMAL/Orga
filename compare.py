@@ -5,23 +5,22 @@ from datetime import datetime
 
 
 csvfile = "sal-data.csv"
-Folio = "003r"
-notes = volpiano.query("../data/" + csvfile, Folio)
+folio = "003r"
+notes = volpiano.query("../data/" + csvfile, folio)
 converted_notes = volpiano.convert(notes)
 symbols = ['1', '3', '7', '4', '-', 'i']
 extracted_notes = volpiano.remove(converted_notes, symbols)
 
-mei_file = "CF-010.xml"
+mei_file = "CF-010.mei"
 mei_notes = mei.get_all_notes("../data/" + mei_file)
 
 dt = datetime.now()
-dt = dt.replace(second=0, microsecond=0)
 
 with open("../tests/trial.txt", "w") as fo:
     fo.write(str(dt) + "\n")
     fo.write("\n" + "mei_notes in " + mei_file + "\n")
     fo.write(note.count(mei_notes) + "\n")
     fo.write("\n" + mei_notes + "\n")
-    fo.write("\n" + "volpiano_notes from " + csvfile + " in Folio: " + Folio + "\n")
+    fo.write("\n" + "volpiano_notes from " + csvfile + " in folio: " + folio + "\n")
     fo.write(note.count(extracted_notes) + "\n")
     fo.write("\n" + extracted_notes + "\n")

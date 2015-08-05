@@ -2,7 +2,7 @@ import csv
 import os
 
 # Queries csv file for volpiano pitches for a single side of Folio
-def query(file_path, Folio):
+def query(file_path, folio):
     script_dir = os.path.dirname(__file__)
     abs_file_path = os.path.join(script_dir, file_path)
 
@@ -10,7 +10,7 @@ def query(file_path, Folio):
 
     with open(abs_file_path) as csvfile:
         reader = csv.DictReader(csvfile)
-        page = Folio
+        page = folio
 
         previous = None
         is_folio_found = False
@@ -53,7 +53,7 @@ def convert(sequence):
 
 # Removes desired symbols from input sequence
 def remove(sequence, symbols):
-    to_remove = symbols 
+    to_remove = symbols
 
     new_sequence = ""
     for s in sequence:
