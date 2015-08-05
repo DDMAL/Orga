@@ -1,3 +1,2 @@
-def count():
-    note_sequence = raw_input('Please enter a sequence of notes:\n')
-    print "Number of notes: {}".format(len(note_sequence))
+def count(notes):
+    return "number of notes: {}".format(len(notes))
