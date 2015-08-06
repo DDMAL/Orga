@@ -2,7 +2,7 @@ import csv
 import os
 
 # Queries csv file for volpiano pitches for a single side of Folio
-def query(file_path, folio):
+def query(file_path, folio, debug=False):
     script_dir = os.path.dirname(__file__)
     abs_file_path = os.path.join(script_dir, file_path)
 
@@ -19,15 +19,24 @@ def query(file_path, folio):
             if row['Folio'] == page:
                 is_folio_found = True
                 if previous is not None and previous['Folio'] != page:
-                    #print previous['Folio'], previous['Volpiano']
-                    #print '\n'
+
+                    if debug:
+                        print previous['Folio'], previous['Volpiano']
+                        print '\n'
+
                     notes += previous['Volpiano']
-                #print row['Folio'], row['Volpiano']
-                #print '\n'
+
+                if debug:
+                    print row['Folio'], row['Volpiano']
+                    print '\n'
+                    
                 notes += row['Volpiano']
             else:
                 if is_folio_found:
-                    # print row['Folio'], row['Volpiano']
+
+                    if debug:
+                        print row['Folio'], row['Volpiano']
+
                     notes += row['Volpiano']
                     is_folio_found = False
             previous = row
