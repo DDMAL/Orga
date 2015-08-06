@@ -18,7 +18,7 @@ def query(file_path, folio):
         for row in reader:
             if row['Folio'] == page:
                 is_folio_found = True
-                if previous['Folio'] != page:
+                if previous is not None and previous['Folio'] != page:
                     #print previous['Folio'], previous['Volpiano']
                     #print '\n'
                     notes += previous['Volpiano']
