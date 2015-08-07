@@ -25,7 +25,7 @@ for mei_file in mei_files:
                '5', '6','2','I', 'w', 'W',
                'x', 'X', 'y','Y', 'z', 'Z']
 
-    extracted_notes = volpiano.remove(converted_notes, symbols)
+    volpiano_notes = volpiano.remove(converted_notes, symbols)
 
     # Queries for all mei notes in mei_file
     mei_notes = mei.get_all_notes(MEI_PATH + mei_file)
@@ -37,5 +37,5 @@ for mei_file in mei_files:
         fo.write(note.count(mei_notes) + "\n")
         fo.write("\n" + mei_notes + "\n")
         fo.write("\n" + "volpiano_notes from " + CSV_FILE + " in folio: " + folio + "\n")
-        fo.write(note.count(extracted_notes) + "\n")
-        fo.write("\n" + extracted_notes + "\n")
+        fo.write(note.count(volpiano_notes) + "\n")
+        fo.write("\n" + volpiano_notes + "\n")
