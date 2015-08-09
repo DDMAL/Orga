@@ -5,18 +5,18 @@ from Bio.SubsMat import MatrixInfo as matlist
 
 def local_align(seq1, seq2, matrix=None):
     if matrix is not None:
-        for a in pairwise2.align.localdx(seq1.upper(), seq2.upper(), matrix):
+        for a in pairwise2.align.localds(seq1.upper(), seq2.upper(), matrix, -10, -.5):
             print format_alignment(*a)
     else:
-        for a in pairwise2.align.localxx(seq1, seq2):
+        for a in pairwise2.align.localms(seq1, seq2, 2, -1, -.5, -.1):
             print format_alignment(*a)
 
-def global_align(seq1, seq2, matrix):
+def global_align(seq1, seq2, matrix=None):
     if matrix is not None:
-        for a in pairwise2.align.globaldx(seq1, seq2, matrix):
+        for a in pairwise2.align.globalds(seq1.upper(), seq2.upper(), matrix, -10, -.5):
             print format_alignment(*a)
     else:
-        for a in pairwise2.align.globalms(seq1, seq2 , 2, -1, -.5, -.1):
+        for a in pairwise2.align.globalms(seq1, seq2, 2, -1, -.5, -.1):
             print format_alignment(*a)
 
 def count(notes):
