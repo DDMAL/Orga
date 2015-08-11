@@ -11,6 +11,15 @@ CSV_PATH = "../data/csv_files/"
 CSV_FILE = "sal-data.csv"
 MEI_PATH = "../data/mei_files/"
 
+VOLPIANO_SYMBOLS = ['1', '3', '7', '4', '-', 'i',
+                    '5', '6', '2', 'I', 'w', 'W',
+                    'x', 'X', 'y', 'Y', 'z', '']
+
+VOLPIANO_MAP = {'h':'a', 'j':'b', 'k':'c',
+                'l':'d', 'm':'e', 'n':'f',
+                'o':'g', 'p':'a', 'q':'b',
+                'r':'c', 's':'d', '9':'g'}
+
 mei_files = os.listdir(MEI_PATH)
 
 for mei_file in mei_files:
@@ -20,13 +29,8 @@ for mei_file in mei_files:
     # Queries for Volpiano notes in corresponding mei_file
     folio = os.path.splitext(mei_file)[0]
     queried_notes = volpiano.query(CSV_PATH + CSV_FILE, folio)
-    converted_notes = volpiano.convert(queried_notes)
-
-    symbols = ['1', '3', '7','4','-', 'i',
-               '5', '6','2','I', 'w', 'W',
-               'x', 'X', 'y','Y', 'z', 'Z']
-
-    volpiano_notes = volpiano.remove(converted_notes, symbols)
+    converted_notes = notes.convert(queried_notes[0], VOLPIANO_MAP)
+    volpiano_notes = notes.remove(converted_notes, VOLPIANO_SYMBOLS)
 
     # Queries for all mei notes in mei_file
     mei_notes = mei.get_all_notes(MEI_PATH + mei_file)
