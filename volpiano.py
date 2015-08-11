@@ -14,6 +14,8 @@ def query(file_path, folio, debug=False):
 
         previous = None
         is_folio_found = False
+        previous_chant = None
+        next_chant = None
 
         for row in reader:
             if row['Folio'] == page:
@@ -24,12 +26,14 @@ def query(file_path, folio, debug=False):
                         print previous['Folio'], previous['Volpiano']
                         print '\n'
 
+                    global previous_chant
+                    previous_chant = previous['Folio']
                     notes += previous['Volpiano']
 
                 if debug:
                     print row['Folio'], row['Volpiano']
                     print '\n'
-                    
+
                 notes += row['Volpiano']
             else:
                 if is_folio_found:
@@ -37,41 +41,11 @@ def query(file_path, folio, debug=False):
                     if debug:
                         print row['Folio'], row['Volpiano']
 
+                    global next_chant
+                    next_chant = row['Folio']
                     notes += row['Volpiano']
                     is_folio_found = False
+
             previous = row
 
-        return notes
-
-# Converts volpiano symbols to diatonic notes
-def convert(sequence):
-
-    volpiano_map =  {'h':'a', 'j':'b', 'k':'c',
-                    'l':'d', 'm':'e', 'n':'f',
-                    'o':'g', 'p':'a', 'q':'b',
-                    'r':'c', 's':'d', '9':'g'}
-
-    new_sequence = ""
-    for s in sequence:
-        if s not in volpiano_map:
-            new_sequence += s
-        else:
-            new_sequence += volpiano_map.get(s)
-
-    return new_sequence
-
-# Removes desired symbols from input sequence
-def remove(sequence, symbols):
-    to_remove = symbols
-
-    new_sequence = ""
-    for s in sequence:
-        if s not in to_remove:
-            new_sequence += s
-
-    return new_sequence
-
-
-
-
-
+        return (notes, previous_chant, next_chant)
