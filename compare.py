@@ -6,9 +6,10 @@ from datetime import datetime
 
 dt = datetime.now()
 
-CSV_FILE = "sal-data.csv"
 DATA_PATH = "../data/"
+CSV_PATH = "../data/csv_files/"
 MEI_PATH = "../data/mei_files/"
+CSV_FILE = "sal-data.csv"
 
 mei_files = os.listdir(MEI_PATH)
 
