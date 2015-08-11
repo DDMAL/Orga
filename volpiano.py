@@ -48,4 +48,9 @@ def query(file_path, folio, debug=False):
 
             previous = row
 
-        return (notes, previous_chant, next_chant)
+        if previous_chant is None:
+            return (notes, "None", next_chant)
+        elif next_chant is None:
+            return (notes, previous_chant, "None")
+        else:
+            return (notes, previous_chant, next_chant)
