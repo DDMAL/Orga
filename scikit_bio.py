@@ -41,6 +41,6 @@ print  'Optimized Alignment Algorithm (Striped Smith Waterman - Local Alignment)
 query = StripedSmithWaterman(str(s1))
 alignment = query(str(s2))
 print alignment
-with open ("../results/striped.txt", "a") as fo:
+with open ("../results/SCIKIT-BIO/striped.txt", "a") as fo:
     fo.write(str(alignment))
     fo.write("\n" + str(dt) + "\n")
