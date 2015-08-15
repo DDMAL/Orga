@@ -7,7 +7,7 @@ def needle(seq1, seq2, gapopen, gapextend, matrix, outfile):
 
     Args:
         seq1 (str): query sequence
-        seq2 (str): reference sequence
+        seq2 (str): subject sequence
         gapopen (int): score for opening a gap
         gapextend (int): score for extending a gap
         matrix (filename): path to or name of file containing matrix data
@@ -31,7 +31,7 @@ def water(seq1, seq2, gapopen, gapextend, matrix, outfile):
 
     Args:
         seq1 (str): query sequence
-        seq2 (str): reference sequence
+        seq2 (str): subject sequence
         gapopen (int): score for opening a gap
         gapextend (int): score for extending a gap
         matrix (filename): path to or name of file containing matrix data
