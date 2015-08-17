@@ -27,8 +27,7 @@ def needle(seq1, seq2, gapopen, gapextend, matrix, outfile):
     needle_cline()
 
 def water(seq1, seq2, gapopen, gapextend, matrix, outfile):
-
-    """Smith-Waterman Local Alignment
+    """Smith-Waterman Local Alignment.
 
     Args:
         seq1 (str): Query sequence.
@@ -39,7 +38,7 @@ def water(seq1, seq2, gapopen, gapextend, matrix, outfile):
         outfile (str): Path to or name of file to write output data.
 
     Returns:
-       File containing local alignment result of input sequences 
+       File containing local alignment result of input sequences
 
     """
     water_cline = WaterCommandline()
