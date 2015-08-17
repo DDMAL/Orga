@@ -39,7 +39,7 @@ def water(seq1, seq2, gapopen, gapextend, matrix, outfile):
         outfile (str): Path to or name of file to write output data.
 
     Returns:
-       File containing local alignment result of input sequence 
+       File containing local alignment result of input sequences 
 
     """
     water_cline = WaterCommandline()
