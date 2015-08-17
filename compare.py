@@ -2,6 +2,7 @@ import volpiano
 import mei
 import notes
 import os
+import emboss
 from datetime import datetime
 
 dt = datetime.now()
@@ -10,6 +11,7 @@ DATA_PATH = "../data/"
 CSV_PATH = "../data/csv_files/"
 CSV_FILE = "sal-data.csv"
 MEI_PATH = "../data/mei_files/"
+RESULT_PATH = "../results/EMBOSS/"
 
 VOLPIANO_SYMBOLS = ['1', '3', '7', '4', '-', 'i',
                     '5', '6', '2', 'I', 'w', 'W',
@@ -32,14 +34,22 @@ for mei_file in mei_files:
     converted_notes = notes.convert(queried_notes, VOLPIANO_MAP)
     volpiano_notes = notes.remove(converted_notes, VOLPIANO_SYMBOLS)
 
-    # Queries for all mei notes in mei_file
-    mei_notes = mei.get_all_notes(MEI_PATH + mei_file)
-
-    # Outputs file containing notes to compare and relevant meta data
+    # Obtains the folio numbers for the next and previous chant with respect to the queried folio.
     previous_chant = volpiano.query(os.path.join(CSV_PATH, CSV_FILE), folio)[1]
     next_chant = volpiano.query(os.path.join(CSV_PATH, CSV_FILE), folio)[2]
 
-    with open("../results/COMPARE/" + folio + "_compare.txt", "w") as fo:
+    # Queries for all mei notes in mei_file
+    mei_notes = mei.get_all_notes(MEI_PATH + mei_file)
+
+    # Sequence alignment the mei notes and volpiano notes
+    gapopen = 10
+    gapextend = 0.5
+    outfile = os.path.join(RESULT_PATH, folio + '_aligned.txt')
+    matrix = 'EBLOSUM62'
+    emboss.needle(mei_notes, volpiano_notes, gapopen, gapextend, matrix, outfile)
+
+    # Appends meta data to file containing alignment information
+    with open(outfile, "a") as fo:
         fo.write(str(dt) + "\n")
         fo.write("\n" + "mei_notes in " + mei_file + "\n")
         fo.write(notes.count(mei_notes) + "\n")
@@ -48,3 +58,5 @@ for mei_file in mei_files:
         fo.write(" (previous_chant: " + previous_chant + ", next_chant: " + next_chant + ") ")
         fo.write("\n" + notes.count(volpiano_notes) + "\n")
         fo.write("\n" + volpiano_notes + "\n")
+
+
