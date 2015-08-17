@@ -44,19 +44,26 @@ for mei_file in mei_files:
     # Sequence alignment the mei notes and volpiano notes
     gapopen = 10
     gapextend = 0.5
-    outfile = os.path.join(RESULT_PATH, folio + '_aligned.txt')
     matrix = 'EBLOSUM62'
-    emboss.needle(mei_notes, volpiano_notes, gapopen, gapextend, matrix, outfile)
+
+    outfile1 = os.path.join(RESULT_PATH, folio + '_local.txt')
+    emboss.needle(mei_notes, volpiano_notes, gapopen, gapextend, matrix, outfile1)
+
+    outfile2 = os.path.join(RESULT_PATH, folio + '_global.txt')
+    emboss.water(mei_notes, volpiano_notes, gapopen, gapextend, matrix, outfile2)
+
+    outfiles = [outfile1, outfile2]
 
     # Appends meta data to file containing alignment information
-    with open(outfile, "a") as fo:
-        fo.write(str(dt) + "\n")
-        fo.write("\n" + "mei_notes in " + mei_file + "\n")
-        fo.write(notes.count(mei_notes) + "\n")
-        fo.write("\n" + mei_notes + "\n")
-        fo.write("\n" + "volpiano_notes from " + CSV_FILE + " in folio: " + folio)
-        fo.write(" (previous_chant: " + previous_chant + ", next_chant: " + next_chant + ") ")
-        fo.write("\n" + notes.count(volpiano_notes) + "\n")
-        fo.write("\n" + volpiano_notes + "\n")
+    for outfile in outfiles:
+        with open(outfile, "a") as fo:
+            fo.write(str(dt) + "\n")
+            fo.write("\n" + "mei_notes in " + mei_file + "\n")
+            fo.write(notes.count(mei_notes) + "\n")
+            fo.write("\n" + mei_notes + "\n")
+            fo.write("\n" + "volpiano_notes from " + CSV_FILE + " in folio: " + folio)
+            fo.write(" (previous_chant: " + previous_chant + ", next_chant: " + next_chant + ") ")
+            fo.write("\n" + notes.count(volpiano_notes) + "\n")
+            fo.write("\n" + volpiano_notes + "\n")
 
 
