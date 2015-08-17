@@ -1,8 +1,21 @@
 import csv
 import os
 
-# Queries csv file for volpiano pitches for a single side of Folio
+
 def query(file_path, folio, debug=False):
+    """Queries csv file for volpiano pitches for a single side of Folio.
+
+    Args:
+        file_path (str): Relative path to the csv file.
+        folio (str): Id number for the folio to be queried.
+        debug (bool): When enabled, prints the result of intermediate steps.
+
+    Returns:
+        A str containing all the volpiano notes corresponding to the folio number
+        queried. In addition, the last chant in the previous page and the first chant
+        of the next page with respect to queried folio number is returned as well.
+
+    """
     script_dir = os.path.dirname(__file__)
     abs_file_path = os.path.join(script_dir, file_path)
 

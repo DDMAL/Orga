@@ -3,18 +3,19 @@ from Bio.Emboss.Applications import WaterCommandline
 
 
 def needle(seq1, seq2, gapopen, gapextend, matrix, outfile):
-    """Needleman-Wunsch Global Alignment
+    """Needleman-Wunsch Global Alignment.
 
     Args:
-        seq1 (str): query sequence
-        seq2 (str): subject sequence
-        gapopen (int): score for opening a gap
-        gapextend (int): score for extending a gap
-        matrix (filename): path to or name of file containing matrix data
-        outfile (filename): path or name of file to write output data
+        seq1 (str): Query sequence.
+        seq2 (str): Subject sequence.
+        gapopen (int): Score for opening a gap.
+        gapextend (int): Score for extending a gap.
+        matrix (str): Path to or name of file containing matrix data.
+        outfile (str): Path or name of file to write output data.
 
     Returns:
-        void
+        File containing global alignment result of input sequences.
+
     """
     needle_cline = NeedleCommandline()
     needle_cline.asequence = "asis:" + seq1
@@ -30,15 +31,16 @@ def water(seq1, seq2, gapopen, gapextend, matrix, outfile):
     """Smith-Waterman Local Alignment
 
     Args:
-        seq1 (str): query sequence
-        seq2 (str): subject sequence
-        gapopen (int): score for opening a gap
-        gapextend (int): score for extending a gap
-        matrix (filename): path to or name of file containing matrix data
-        outfile (filename): path or name of file to write output data
+        seq1 (str): Query sequence.
+        seq2 (str): Subject sequence.
+        gapopen (int): Score for opening a gap.
+        gapextend (int): Score for extending a gap.
+        matrix (str): Path to or name of file containing matrix data.
+        outfile (str): Path to or name of file to write output data.
 
     Returns:
-        void
+       File containing local alignment result of input sequence 
+
     """
     water_cline = WaterCommandline()
     water_cline.asequence = "asis:" + seq1
