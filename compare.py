@@ -46,10 +46,10 @@ for mei_file in mei_files:
     gapextend = 0.5
     matrix = 'EBLOSUM62'
 
-    outfile1 = os.path.join(RESULT_PATH, folio + '_local.txt')
+    outfile1 = os.path.join(RESULT_PATH, folio + '_global.txt')
     emboss.needle(mei_notes, volpiano_notes, gapopen, gapextend, matrix, outfile1)
 
-    outfile2 = os.path.join(RESULT_PATH, folio + '_global.txt')
+    outfile2 = os.path.join(RESULT_PATH, folio + '_local.txt')
     emboss.water(mei_notes, volpiano_notes, gapopen, gapextend, matrix, outfile2)
 
     outfiles = [outfile1, outfile2]
