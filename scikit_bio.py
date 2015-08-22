@@ -13,6 +13,7 @@ def skbio_local_align(seq1, seq2, gap_open_penalty, gap_extend_penalty, outfile)
         seq2 (str): Subject sequence.
         gap_open_penalty (int): Penalty for opening a gap.
         gap_extend_penalty (int): Penalty for extending a gap.
+        outfile (str): Path or name of file to write output data.
 
     Returns:
         File containing local alignment result of input sequences.
@@ -32,6 +33,7 @@ def skbio_global_align(seq1, seq2, gap_open_penalty, gap_extend_penalty, outfile
             seq2 (str): Subject sequence.
             gap_open_penalty (int): Penalty for opening a gap.
             gap_extend_penalty (int): Penalty for extending a gap.
+            outfile (str): Path or name of file to write output data.
 
         Returns:
             File containing global alignment result of input sequences.
